@@ -381,6 +381,10 @@ function handleOptionClick(index) {
 
   searchState.showOptions = false
   searchState.isPointerInList = false
+  // A pointer click explicitly selects this option, so drop any stale
+  // keyboard selection; otherwise handleClick would search for the
+  // previously keyboard-selected entry instead of the clicked one
+  searchState.keyboardSelectedOptionIndex = -1
   inputData.value = visibleDataList.value[index]
   emit('input', inputData.value)
   handleClick()
